@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import javax.xml.bind.DatatypeConverter;
 
 public class EncryptUtil {
-    public static String getPassowordEncrypt(String plain_p , String pepper){
+    public static String getPasswordEncrypt(String plain_p , String pepper){
         String ret = "";
 
         if(plain_p != null && !plain_p.equals("")){

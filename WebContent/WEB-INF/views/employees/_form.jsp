@@ -22,9 +22,9 @@
 <br /><br />
 
 <label for="admin_flag">権限</label><br />
-<select name="adimin_flag">
-    <option value ="0"<c:if test="${employee.admin_flag == 0}"> selected</c:if>>一般</option>
-    <option value ="1"<c:if test="${employee.admin_flag == 1}"> selected</c:if>>管理者</option>
+<select name="admin_flag">
+    <option value="0"<c:if test="${employee.admin_flag == 0}"> selected</c:if>>一般</option>
+    <option value="1"<c:if test="${employee.admin_flag == 1}"> selected</c:if>>管理者</option>
 </select>
 <br /><br />
 

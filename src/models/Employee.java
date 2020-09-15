@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -18,16 +20,36 @@ import javax.persistence.Table;
             query = "SELECT e FROM Employee AS e ORDER BY e.id DESC"
             ),
     @NamedQuery(
+            name = "getAllCurrentEmployees",
+            query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 ORDER BY e.id DESC"
+            ),
+    @NamedQuery(
             name = "getEmployeesCount",
             query = "SELECT COUNT(e) FROM Employee AS e"
+            ),
+    @NamedQuery(
+            name = "getCurrentEmployeesCount",
+            query = "SELECT COUNT(e) FROM Employee AS e WHERE e.delete_flag = 0"
             ),
     @NamedQuery(
             name = "checkRegisteredCode",
             query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
             ),
     @NamedQuery(
+            name = "searchEmployeeByCode",
+            query = "SELECT e FROM Employee AS e WHERE e.code = :code"
+            ),
+    @NamedQuery(
             name = "checkLoginCodeAndPassword",
             query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
+            ),
+    @NamedQuery(
+            name = "checkJoinProject",
+            query = "SELECT e FROM Employee AS e WHERE e.project = :project_id"
+            ),
+    @NamedQuery(
+            name = "checkJoinProjectCount",
+            query = "SELECT COUNT(e) FROM Employee AS e WHERE e.project = :project_id"
             ),
 })
 
@@ -63,6 +85,12 @@ public class Employee {
     @Column(name = "delete_flag" , nullable = false)
     private Integer delete_flag;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
+
+    @Column(name = "project_finish")
+    private Boolean projectFinish;
 
     //getter and setter
     public Integer getId(){
@@ -127,5 +155,19 @@ public class Employee {
 
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Boolean getProjectFinish() {
+        return projectFinish;
+    }
+    public void setProjectFinish(Boolean projectFinish) {
+        this.projectFinish = projectFinish;
     }
 }

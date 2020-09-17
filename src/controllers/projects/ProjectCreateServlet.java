@@ -56,9 +56,12 @@ public class ProjectCreateServlet extends HttpServlet {
 
 
 
-
-
-           errors.add(ProjectValidator.validate(p));
+           System.out.println("errorsSize1;"+errors.size());
+           String error2 = ProjectValidator.validate(p);
+           if(error2 != null){
+               errors.add(error2);
+           }
+           System.out.println("errorsSize2;"+errors.size());
            if(errors.size() > 0){
                em.close();
                System.out.println(errors);

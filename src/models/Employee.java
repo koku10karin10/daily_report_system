@@ -86,7 +86,7 @@ public class Employee {
     private Integer delete_flag;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", nullable = false)
+    @JoinColumn(name = "project_id")
     private Project project;
 
     @Column(name = "project_finish")

@@ -1,0 +1,9 @@
+create table progresses (
+             id integer not null auto_increment,
+             finish bit not null,
+             hotlimit date,
+             phase integer not null,
+             step varchar(255),
+             employee_id integer not null,
+             primary key (id)
+         ) ;

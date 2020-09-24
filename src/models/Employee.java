@@ -44,7 +44,7 @@ import javax.persistence.Table;
             query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
             ),
     @NamedQuery(
-            name = "checkJoinProject",
+            name = "getJoinProjectEmployee",
             query = "SELECT e FROM Employee AS e WHERE e.project = :project_id"
             ),
     @NamedQuery(

@@ -9,9 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name = "progresses")
@@ -19,7 +19,11 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "checkRegisteredProgresses",
             query = "SELECT COUNT(p) FROM Progress AS p WHERE p.employee = :employee"
-            )
+            ),
+    @NamedQuery(
+            name = "getRegisteredProgresses",
+            query = "SELECT p FROM Progress AS p WHERE p.employee = :employee"
+            ),
 })
 @Entity
 public class Progress {
@@ -28,17 +32,17 @@ public class Progress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     @Column(name = "phase" , nullable = false)
     private Integer phase;
 
-    @Column(name = "step" , nullable = false)
+    @Column(name = "step")
     private String step;
 
-    @Column(name = "limit" , nullable = false)
+    @Column(name = "hotlimit")
     private Date limit;
 
     @Column(name = "finish" , nullable = false)

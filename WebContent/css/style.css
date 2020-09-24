@@ -163,3 +163,47 @@ pre {
 h3 {
     font-size: larger;
 }
+
+#content #graph {
+    display: inline-block;
+    padding:50px;
+
+}
+
+.progressTrue{
+    background-color: #86e0ff;
+}
+
+.progressFalse{
+    background-color: white;
+}
+
+#graph #true{
+    background-color: #8abbff;
+    display : inline-block;
+    width : 300px;
+    text-align:center;
+    position:relative;
+    border:solid;
+    padding:0;
+    margin:0;
+
+}
+
+#graph #false{
+    display : inline-block;
+    width : 300px;
+    text-align:center;
+    position:relative;
+    border:solid;
+    padding:0;
+    margin:0;
+}
+
+#project{
+    text-align:center;
+}
+
+h1#project{
+    text-align:center;
+}

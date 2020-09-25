@@ -1,3 +1,9 @@
+//employeeテーブル追加処理
+alter table employees add (project_id integer ,project_finish bit);
+
+
+
+//ProgressTable作成クエリ
 create table progresses (
              id integer not null auto_increment,
              finish bit not null,

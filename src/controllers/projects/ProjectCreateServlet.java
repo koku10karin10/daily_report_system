@@ -75,7 +75,10 @@ public class ProjectCreateServlet extends HttpServlet {
                if(eCodelist != null){
                    //check box の値から従業員を検索し、参加しているプロジェクトを登録
                        for(int i = 0 ; i < eCodelist.length ; i++){
-                           Employee je = (Employee)em.find(Employee.class, Integer.parseInt(eCodelist[i]));
+                           Employee je = (Employee)em.createNamedQuery("searchEmployeeByCode", Employee.class)
+                                                       .setParameter("code",eCodelist[i])
+                                                       .getSingleResult();
+
 
                            je.setProject(p);
                            je.setProjectFinish(false);

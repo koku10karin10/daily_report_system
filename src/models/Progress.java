@@ -2,7 +2,6 @@ package models;
 
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +23,10 @@ import javax.persistence.Table;
             name = "getRegisteredProgresses",
             query = "SELECT p FROM Progress AS p WHERE p.employee = :employee"
             ),
+    @NamedQuery(
+            name = "deleteRegisteredProgresses",
+            query = "DELETE  FROM Progress  WHERE employee = :employee"
+            ),
 })
 @Entity
 public class Progress {
@@ -32,7 +35,7 @@ public class Progress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
